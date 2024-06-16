@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Página com Fundo Dinâmico</title>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Times New Roman', serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 48px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transition: background-image 0.5s ease-in-out;
+    }
+</style>
+<script>
+    function changeBackgroundImage() {
+        // Adicionando um timestamp à URL para evitar o cache da imagem pelo navegador
+        const timestamp = new Date().getTime();
+        const url = `https://source.unsplash.com/random/1920x1080?sig=${timestamp}`;
+        
+        fetch(url)
+            .then(response => {
+                document.body.style.backgroundImage = `url(${response.url})`;
+            })
+            .catch(error => {
+                console.error('Erro ao carregar a imagem de fundo:', error);
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', changeBackgroundImage);
+    setInterval(changeBackgroundImage, 5000); // Muda a imagem a cada 5 segundos
+</script>
+</head>
+<body>
+    Mattheus Fernando
+</body>
+</html>
